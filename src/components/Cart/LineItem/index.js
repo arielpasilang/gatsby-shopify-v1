@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 
 import StoreContext from '~/context/StoreContext'
 import { Wrapper } from './styles'
+import { Button } from '~/utils/styles'
 
 const LineItem = props => {
   const { item } = props
@@ -42,7 +43,7 @@ const LineItem = props => {
       </p>
       {selectedOptions}
       {item.quantity}
-      <button onClick={handleRemove}>Remove</button>
+      <Button onClick={handleRemove}>Remove</Button>
     </Wrapper>
   )
 }

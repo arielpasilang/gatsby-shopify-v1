@@ -2,6 +2,8 @@ import React, { useState, useContext, useEffect, useCallback } from 'react'
 import find from 'lodash/find'
 import isEqual from 'lodash/isEqual'
 import PropTypes from 'prop-types'
+import { Label, Select, Input } from './styles'
+import { Button } from '~/utils/styles'
 
 import StoreContext from '~/context/StoreContext'
 
@@ -100,8 +102,8 @@ const ProductForm = ({ product }) => {
       <h3>{price}</h3>
       {options.map(({ id, name, values }, index) => (
         <React.Fragment key={id}>
-          <label htmlFor={name}>{name} </label>
-          <select
+          <Label htmlFor={name}>{name} </Label>
+          <Select
             name={name}
             key={id}
             onChange={event => handleOptionChange(index, event)}
@@ -115,12 +117,12 @@ const ProductForm = ({ product }) => {
                 {value}
               </option>
             ))}
-          </select>
+          </Select>
           <br />
         </React.Fragment>
       ))}
-      <label htmlFor="quantity">Quantity </label>
-      <input
+      <Label htmlFor="quantity">Quantity </Label>
+      <Input
         type="number"
         id="quantity"
         name="quantity"
@@ -130,13 +132,13 @@ const ProductForm = ({ product }) => {
         value={quantity}
       />
       <br />
-      <button
+      <Button
         type="submit"
         disabled={!available || adding}
         onClick={handleAddToCart}
       >
         Add to Cart
-      </button>
+      </Button>
       {!available && <p>This Product is out of Stock!</p>}
     </>
   )

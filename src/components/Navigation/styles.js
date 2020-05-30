@@ -20,28 +20,45 @@ export const Container = styled.div`
 export const MenuLink = styled(Link)`
   color: white;
   text-decoration: none;
-  font-size: 2rem;
+  font-size: 24px;
   font-weight: bold;
+  position: relative;
+  &:hover {
+    text-decoration: none;
+    color: #fff;
+  }
+  @media (max-width: ${breakpoints.s}px) {
+    font-size: 1.4rem;
+  }
+`
 
-  @media (max-width: ${breakpoints.s}px){
-    font-size: 1.4rem
+export const CartLink = styled(Link)`
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  position: relative;
+  width: 60px;
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 5px;
+  &:hover {
+    text-decoration: none;
+    color: #fff;
+  }
+  @media (max-width: ${breakpoints.s}px) {
+    font-size: 1.4rem;
   }
 `
 
 export const CartCounter = styled.span`
   background-color: white;
   color: #663399;
-  border-radius: 20px;
-  padding: 0 10px;
-  font-size: 1.2rem;
-  float: right;
+  border-radius: 10px;
+  padding: 2px 7px;
+  font-size: 10px;
+  position: absolute;
   margin: -10px;
   z-index: 20;
+  right: 0;
 `
-
-    
-     
-        
-          
-            
-              

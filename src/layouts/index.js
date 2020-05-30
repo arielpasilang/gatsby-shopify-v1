@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 import styled from '@emotion/styled'
-
+import 'bootstrap/dist/css/bootstrap.min.css'
 import ContextProvider from '~/provider/ContextProvider'
 
 import { GlobalStyle } from '~/utils/styles'
