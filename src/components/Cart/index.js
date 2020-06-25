@@ -75,6 +75,9 @@ const Value = styled.span`
 
 const Total = styled.h3`
   font-weight: bold;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #f2f3f4;
 `
 const TotalValue = styled.span`
   font-size: 32px;

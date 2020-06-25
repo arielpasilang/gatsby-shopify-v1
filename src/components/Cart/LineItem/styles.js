@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
 	border-radius: 15px;
 	border: 1px solid #f2f3f4;
 	text-align: center;
+	margin: 20px 0;
 	a img {
 		border-top-left-radius: 15px;
 		border-bottom-left-radius: 15px;
@@ -54,6 +55,7 @@ export const Minus = styled.span`
 	border: 1px solid #f2f3f4;
 	text-align: center;
 	vertical-align: middle;
+	cursor: pointer;
 `
 
 export const Plus = styled.span`
@@ -61,4 +63,5 @@ export const Plus = styled.span`
 	border: 1px solid #f2f3f4;
 	text-align: center;
 	vertical-align: middle;
+	cursor: pointer;
 `

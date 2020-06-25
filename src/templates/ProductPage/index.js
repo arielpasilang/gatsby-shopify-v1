@@ -5,12 +5,14 @@ import SEO from '~/components/seo'
 import ProductForm from '~/components/ProductForm'
 import { Img, Container } from '~/utils/styles'
 import { ProductTitle, ProductDescription } from './styles'
+import BreadCrumbs from '~/components/BreadCrumbs'
 
 const ProductPage = ({ data }) => {
   const product = data.shopifyProduct
   return (
     <div>
       <SEO title={product.title} description={product.description} />
+      <BreadCrumbs menu={product.title} />
       {product.images.map(image => (
         <Img
           fluid={image.localFile.childImageSharp.fluid}
@@ -45,6 +47,7 @@ export const query = graphql`
         values
       }
       variants {
+        sku
         id
         title
         price

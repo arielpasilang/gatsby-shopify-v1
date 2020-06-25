@@ -8,6 +8,9 @@ export const Price = styled.span`
 	margin: 15px 0;
 	font-weight: bold;
 	font-family: 'Montserrat', sans-serif;
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 2px solid #f2f3f4;
 `
 
 export const ProductData = styled.ul`

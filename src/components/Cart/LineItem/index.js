@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'gatsby'
 
 import StoreContext from '~/context/StoreContext'
@@ -18,6 +18,7 @@ const LineItem = props => {
   const { item } = props
   const {
     removeLineItem,
+    updateLineItem,
     store: { client, checkout },
   } = useContext(StoreContext)
 
@@ -39,6 +40,14 @@ const LineItem = props => {
     removeLineItem(client, checkout.id, item.id)
   }
 
+  const handleAddItems = () => {
+    updateLineItem(client, checkout.id, item.id, item.quantity + 1)
+  }
+
+  const handleSubstractItems = () => {
+    updateLineItem(client, checkout.id, item.id, item.quantity - 1)
+  }
+
   return (
     <Wrapper>
       {console.log(item)}
@@ -52,9 +61,9 @@ const LineItem = props => {
       </ProductData>
       <Actions>
         <Count>
-          <Minus>-</Minus>
+          <Minus onClick={handleSubstractItems}>-</Minus>
           <Quantity type="text" value={item.quantity} />
-          <Plus>+</Plus>
+          <Plus onClick={handleAddItems}>+</Plus>
         </Count>
         <Button onClick={handleRemove}>REMOVE</Button>
       </Actions>

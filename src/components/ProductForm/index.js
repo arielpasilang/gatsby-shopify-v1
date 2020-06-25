@@ -122,21 +122,20 @@ const ProductForm = ({ product }) => {
 
   const [hasItems, itemQuantity] = useQuantity()
 
+  console.log(initialVariant)
+
   return (
     <div>
-      <Price>{price}</Price>
       <ProductData>
         <List>
-          <Label>Brand:</Label>
-          <Value>Test 1123</Value>
-        </List>
-        <List>
           <Label>SKU:</Label>
-          <Value>Test 1123</Value>
+          <Value>{variant.sku}</Value>
         </List>
         <List>
           <Label>Availability:</Label>
-          <Value>Test 1123</Value>
+          <Value>
+            {variant.availableForSale ? 'Available' : 'Not Available'}
+          </Value>
         </List>
         <List>
           {options.map(({ id, name, values }, index) => (
@@ -173,7 +172,9 @@ const ProductForm = ({ product }) => {
             value={quantity}
           />
         </List>
+        <Price>{price}</Price>
       </ProductData>
+
       <Wrapper>
         <AddCart
           type="submit"
