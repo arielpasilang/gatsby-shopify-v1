@@ -1,11 +1,32 @@
 import React, { useState, useContext, useEffect, useCallback } from 'react'
 import find from 'lodash/find'
+import reduce from 'lodash/reduce'
 import isEqual from 'lodash/isEqual'
 import PropTypes from 'prop-types'
-import { Label, Select, Input } from './styles'
-import { Button } from '~/utils/styles'
+import {
+  Label,
+  Select,
+  Input,
+  Price,
+  ProductData,
+  List,
+  Value,
+  Wrapper,
+  AddCart,
+  BuyNow,
+  ViewCart,
+} from './styles'
 
 import StoreContext from '~/context/StoreContext'
+
+const useQuantity = () => {
+  const {
+    store: { checkout },
+  } = useContext(StoreContext)
+  const items = checkout ? checkout.lineItems : []
+  const total = reduce(items, (acc, item) => acc + item.quantity, 0)
+  return [total !== 0, total]
+}
 
 const ProductForm = ({ product }) => {
   const {
@@ -39,6 +60,8 @@ const ProductForm = ({ product }) => {
     },
     [client.product, productVariant.shopifyId, variants]
   )
+
+  console.log(useContext(StoreContext))
 
   useEffect(() => {
     checkAvailability(product.shopifyId)
@@ -97,50 +120,76 @@ const ProductForm = ({ product }) => {
     style: 'currency',
   }).format(variant.price)
 
+  const [hasItems, itemQuantity] = useQuantity()
+
   return (
-    <>
-      <h3>{price}</h3>
-      {options.map(({ id, name, values }, index) => (
-        <React.Fragment key={id}>
-          <Label htmlFor={name}>{name} </Label>
-          <Select
-            name={name}
-            key={id}
-            onChange={event => handleOptionChange(index, event)}
-          >
-            {values.map(value => (
-              <option
-                value={value}
-                key={`${name}-${value}`}
-                disabled={checkDisabled(name, value)}
+    <div>
+      <Price>{price}</Price>
+      <ProductData>
+        <List>
+          <Label>Brand:</Label>
+          <Value>Test 1123</Value>
+        </List>
+        <List>
+          <Label>SKU:</Label>
+          <Value>Test 1123</Value>
+        </List>
+        <List>
+          <Label>Availability:</Label>
+          <Value>Test 1123</Value>
+        </List>
+        <List>
+          {options.map(({ id, name, values }, index) => (
+            <React.Fragment key={id}>
+              <Label htmlFor={name}>{name} </Label>
+              <Select
+                name={name}
+                key={id}
+                onChange={event => handleOptionChange(index, event)}
               >
-                {value}
-              </option>
-            ))}
-          </Select>
-          <br />
-        </React.Fragment>
-      ))}
-      <Label htmlFor="quantity">Quantity </Label>
-      <Input
-        type="number"
-        id="quantity"
-        name="quantity"
-        min="1"
-        step="1"
-        onChange={handleQuantityChange}
-        value={quantity}
-      />
-      <br />
-      <Button
-        type="submit"
-        disabled={!available || adding}
-        onClick={handleAddToCart}
-      >
-        Add to Cart
-      </Button>
-      {!available && <p>This Product is out of Stock!</p>}
-    </>
+                {values.map(value => (
+                  <option
+                    value={value}
+                    key={`${name}-${value}`}
+                    disabled={checkDisabled(name, value)}
+                  >
+                    {value}
+                  </option>
+                ))}
+              </Select>
+              <br />
+            </React.Fragment>
+          ))}
+        </List>
+        <List>
+          <Label htmlFor="quantity">Quantity </Label>
+          <Input
+            type="number"
+            id="quantity"
+            name="quantity"
+            min="1"
+            step="1"
+            onChange={handleQuantityChange}
+            value={quantity}
+          />
+        </List>
+      </ProductData>
+      <Wrapper>
+        <AddCart
+          type="submit"
+          disabled={!available || adding}
+          onClick={handleAddToCart}
+        >
+          Add to Cart
+        </AddCart>
+
+        <BuyNow>Buy Now</BuyNow>
+        <ViewCart to="/cart">
+          View Cart {hasItems && <span>{itemQuantity}</span>}
+        </ViewCart>
+        {!available && <p>This Product is out of Stock!</p>}
+      </Wrapper>
+    </div>
   )
 }
 

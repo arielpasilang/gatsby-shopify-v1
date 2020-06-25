@@ -2,8 +2,17 @@ import React, { useContext } from 'react'
 import { Link } from 'gatsby'
 
 import StoreContext from '~/context/StoreContext'
-import { Wrapper } from './styles'
-import { Button } from '~/utils/styles'
+import {
+  Wrapper,
+  ProductData,
+  Title,
+  Actions,
+  Button,
+  Count,
+  Quantity,
+  Minus,
+  Plus,
+} from './styles'
 
 const LineItem = props => {
   const { item } = props
@@ -16,7 +25,7 @@ const LineItem = props => {
     <img
       src={item.variant.image.src}
       alt={`${item.title} product shot`}
-      height="60px"
+      width="100px"
     />
   ) : null
 
@@ -36,14 +45,19 @@ const LineItem = props => {
       <Link to={`/product/${item.variant.product.handle}/`}>
         {variantImage}
       </Link>
-      <p>
-        {item.title}
-        {`  `}
-        {item.variant.title === !'Default Title' ? item.variant.title : ''}
-      </p>
-      {selectedOptions}
-      {item.quantity}
-      <Button onClick={handleRemove}>Remove</Button>
+      <ProductData>
+        <Title>{item.title.toUpperCase()}</Title>
+        <p>Description</p>
+        <span>Price</span>
+      </ProductData>
+      <Actions>
+        <Count>
+          <Minus>-</Minus>
+          <Quantity type="text" value={item.quantity} />
+          <Plus>+</Plus>
+        </Count>
+        <Button onClick={handleRemove}>REMOVE</Button>
+      </Actions>
     </Wrapper>
   )
 }

@@ -15,10 +15,10 @@ export const GlobalStyle = props => (
     {...props}
     styles={css`
       body {
-        margin: 0;
+        margin: 0 !important;
       }
       html {
-        font-family: sans-serif;
+        font-family: 'Roboto', sans-serif;
         -ms-text-size-adjust: 100%;
         -webkit-text-size-adjust: 100%;
       }
@@ -36,30 +36,13 @@ export const Img = styled(Image)`
   padding-right: 0;
   padding-top: 0;
   margin-bottom: 1.45rem;
+  max-height: 380px;
 `
 
 export const Container = styled.div`
   margin: 0 auto;
-  max-width: 960px;
-`
-
-export const TwoColumnGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 2rem 1fr;
-  grid-template-rows: 1auto;
-  grid-template-areas: 'left . right';
-
-  @media (max-width: ${breakpoints.l}px) {
-    display: block;
-  }
-`
-
-export const GridLeft = styled.div`
-  grid-area: left;
-`
-
-export const GridRight = styled.div`
-  grid-area: right;
+  max-width: 460px;
+  padding: 15px;
 `
 
 export const MainContent = styled.main`

@@ -3,44 +3,29 @@ import { graphql } from 'gatsby'
 
 import SEO from '~/components/seo'
 import ProductForm from '~/components/ProductForm'
-import {
-  Img,
-  Container,
-  TwoColumnGrid,
-  GridLeft,
-  GridRight,
-} from '~/utils/styles'
-import {
-  ProductTitle,
-  ProductDescription
-} from './styles'
+import { Img, Container } from '~/utils/styles'
+import { ProductTitle, ProductDescription } from './styles'
 
 const ProductPage = ({ data }) => {
   const product = data.shopifyProduct
   return (
-    <>
+    <div>
       <SEO title={product.title} description={product.description} />
+      {product.images.map(image => (
+        <Img
+          fluid={image.localFile.childImageSharp.fluid}
+          key={image.id}
+          alt={product.title}
+        />
+      ))}
       <Container>
-        <TwoColumnGrid>
-          <GridLeft>
-            {product.images.map(image => (
-              <Img
-                fluid={image.localFile.childImageSharp.fluid}
-                key={image.id}
-                alt={product.title}
-              />
-            ))}
-          </GridLeft>
-          <GridRight>
-            <ProductTitle>{product.title}</ProductTitle>
-            <ProductDescription
-              dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
-            />
-            <ProductForm product={product} />
-          </GridRight>
-        </TwoColumnGrid>
+        <ProductTitle>{product.title.toUpperCase()}</ProductTitle>
+        <ProductDescription
+          dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
+        />
+        <ProductForm product={product} />
       </Container>
-    </>
+    </div>
   )
 }
 

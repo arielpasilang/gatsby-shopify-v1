@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import { breakpoints } from '../../utils/styles'
 
 export const Grid = styled.div`
-  display: grid;
+  display: block;
   grid-template-columns: repeat(3, 1fr);
   gap: 2.5rem;
 
@@ -14,31 +14,46 @@ export const Grid = styled.div`
 
 export const Product = styled.div`
   display: flex;
-  min-height: 100%;
-  flex-direction: column;
-  padding: 15px;
-  border-radius: 10px;
-  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
-    0 3px 6px rgba(0, 0, 0, 0.23);
-  -moz-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  -ms-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  -o-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  width: 100%;
+  align-items: right;
+  flex-direction: row;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  font-family: 'Roboto', sans-serif;
+  margin: 20px 0;
+  a {
+    width: 40%;
+  }
+  a > div {
+    height: 150px;
+    margin-bottom: 0;
+    border-radius: 15px;
+  }
+  .description {
+    width: 60%;
+    padding: 10px;
+  }
 `
 
 export const Title = styled.span`
-  font-weight: 500;
-  font-size: 16px;
-  text-align: center;
+  font-weight: bold;
+  display: block;
+  font-size: 12pt;
+  margin-bottom: 5px;
+`
+
+export const Description = styled.span`
+  font-weight: normal;
+  display: block;
+  font-size: 10pt;
+  color: #979797;
+  margin-bottom: 5px;
 `
 
 export const PriceTag = styled.span`
-  font-weight: 300;
-  font-size: 12px;
-  text-align: center;
+  font-weight: bold;
+  font-family: Montserrat, sans-serif;
+  font-size: 15px;
   margin-top: 15px;
-
-  :before {
-    content: '- ';
-  }
+  color: #0099ff;
 `
