@@ -69,7 +69,7 @@ export const BuyNow = styled.button`
 	height: 40px;
 	margin: 10px;
 	width: 50%;
-	line-height: 38px;
+	line-height: 36px;
 	text-align: center;
 	border: 1px solid #0099ff;
 	border-radius: 20px;
@@ -91,7 +91,7 @@ export const AddCart = styled.button`
 	height: 40px;
 	margin: 10px;
 	width: 50%;
-	line-height: 38px;
+	line-height: 36px;
 	text-align: center;
 	border: 1px solid #0099ff;
 	border-radius: 20px;
@@ -112,7 +112,7 @@ export const ViewCart = styled(Link)`
 	height: 38px;
 	margin: 10px;
 	width: 50%;
-	line-height: 38px;
+	line-height: 36px;
 	text-align: center;
 	border: 1px solid #0099ff;
 	border-radius: 20px;
